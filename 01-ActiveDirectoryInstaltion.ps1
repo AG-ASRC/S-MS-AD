@@ -20,7 +20,7 @@ if (-not $RunAsRelaunched) {
     exit 0
 }
 
-function Generate-RandomPassword {
+function New-RandomPassword {
     # Genere un mot de passe admin (DSRM) en 1 ligne (16 caracteres, dont 3 speciaux minimum).
     Add-Type -AssemblyName System.Web
     $generatedAdminPassword = [System.Web.Security.Membership]::GeneratePassword(16, 3)
@@ -29,7 +29,7 @@ function Generate-RandomPassword {
     return $safeModeAdministratorPassword
 }
 
-$password = Generate-RandomPassword()
+$password = New-RandomPassword
 $domainName = Read-Host "DomainName (ex: example.com)"
 $Netbios = Read-Host "Netbios (ex: EXAMPLE)"
 
